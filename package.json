@@ -4,30 +4,12 @@
   "private": true,
   "homepage": "http://iconoteka.com",
   "dependencies": {
-    "fs-extra": "^6.0.1",
-    "iconoteka": "github:iconoteka/iconoteka#1f85a2379808afbe2ddc8787d75bb1dfd4239cc5",
-    "node-sass": "^4.11.0",
-    "prop-types": "^15.6.2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-scripts": "^3.0.1",
-    "react-waypoint": "^9.0.2"
+    "@iconoteka/website-engine": "github:iconoteka/website-engine#9b0839f826383438a4fd16d8e6cc5980bab86ed1",
+    "iconoteka": "github:iconoteka/iconoteka#495fcd35676675202ff7be781072ed3ada514390"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "REACT_APP_BASE_URL=https://iconoteka.com react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "copyIconoteka": "cpx './node_modules/iconoteka/iconoteka/**' ./src/iconoteka/ --clean",
-    "postinstall": "npm run copyIconoteka && cd ./node_modules/iconoteka/ && npm run prepare"
-  },
-  "devDependencies": {
-    "cpx": "^1.5.0"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+    "start": "iconoteka start",
+    "build": "REACT_APP_BASE_URL=https://iconoteka.com iconoteka build",
+    "test": "iconoteka test --env=jsdom"
+  }
 }
