@@ -22,7 +22,7 @@ jobs:
     - name: Deploy to Staging server
       uses: easingthemes/ssh-deploy@v2.1.5
       env:
-        SSH_PRIVATE_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        SSH_PRIVATE_KEY: ${{ secrets.STAGING_KEY }}
         ARGS: "-rltgoDzvO --delete"
         SOURCE: "build/"
         REMOTE_HOST: ${{ secrets.STAGING_HOST }}
