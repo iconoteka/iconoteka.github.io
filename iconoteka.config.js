@@ -1,6 +1,7 @@
 const path = require('path');
 const getIconName = require('./scripts/lib/getIconName');
 const getStyleObject = require('./scripts/lib/getStyleObject');
+const getKeywords = require('./scripts/lib/getKeywords');
 
 const config = {
     iconotekaJson: path.join(__dirname, 'iconoteka', 'iconoteka.json'),
@@ -15,10 +16,12 @@ const config = {
 
             const styles = getStyleObject(item.name);
             const name = getIconName(item.name);
+            const keywords = getKeywords(item.name);
         
             return {
               ...styles,
               name,
+              keywords,
               path: item.fileName,
             };
         }
