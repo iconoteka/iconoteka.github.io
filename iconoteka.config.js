@@ -1,20 +1,32 @@
 const path = require('path');
-
-// Workaround to avoid errors on inconoteka-engine postinstall time
-let iconotekaJson = '';
-let iconotekaFilesPath = '';
-
-try {
-    iconotekaJson = path.join(path.dirname(require.resolve('iconoteka')), 'iconoteka.json');
-    iconotekaFilesPath = path.join(path.dirname(require.resolve('iconoteka')), 'iconoteka');
-} catch(e) {
-
-}
+const getIconName = require('./scripts/lib/getIconName');
+const getStyleObject = require('./scripts/lib/getStyleObject');
+const getKeywords = require('./scripts/lib/getKeywords');
 
 const config = {
-    iconotekaJson,
-    iconotekaFilesPath,
+    iconotekaJson: path.join(__dirname, 'iconoteka', 'iconoteka.json'),
+    iconotekaFilesPath: path.join(__dirname, 'iconoteka'),
     googleAnalyticsId: 'UA-125050250-1', 
+    figma: {
+        apiToken: process.env.FIGMA_TOKEN,
+        fileId: 'ai530607BNjKqGAFiOSdNd',
+        startNodeId: '0:1',
+        requestChunkSize: 600,
+        targetDir: path.join(__dirname, 'iconoteka'),
+        fillItemProps: item => {
+
+            const styles = getStyleObject(item.name);
+            const name = getIconName(item.name);
+            const keywords = getKeywords(item.name);
+        
+            return {
+              ...styles,
+              name,
+              keywords,
+              path: item.fileName,
+            };
+        }
+    }
 };
 
 module.exports = config;
