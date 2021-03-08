@@ -17,10 +17,17 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+# Add retries due to lack of stability of Figma API
     - name: Install Packages
-      run: npm install
+      uses: nick-invision/retry@v2
+      with:
+        timeout_minutes: 15
+        max_attempts: 3
+        retry_on: error
+        command: npm ci
       env:
-        FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
+        FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}   
+        
     - name: Build web app
       run: npm run build
     - name: Deploy to github pages
