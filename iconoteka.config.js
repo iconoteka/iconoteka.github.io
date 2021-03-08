@@ -6,6 +6,7 @@ const getKeywords = require('./scripts/lib/getKeywords');
 const config = {
     iconotekaJson: path.join(__dirname, 'iconoteka', 'iconoteka.json'),
     iconotekaFilesPath: path.join(__dirname, 'iconoteka'),
+    googleAnalyticsId: 'UA-125050250-1', 
     figma: {
         apiToken: process.env.FIGMA_TOKEN,
         fileId: 'ai530607BNjKqGAFiOSdNd',
