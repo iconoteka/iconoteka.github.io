@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "http://iconoteka.com",
   "dependencies": {
-    "@iconoteka/website-engine": "github:iconoteka/website-engine#1b3acc22e76f8c5312c554ef33a669d998f37d8e",
+    "@iconoteka/website-engine": "github:iconoteka/website-engine#523baa055f0d2182379107274ff1f80d29116188",
     "gh-pages": "^3.1.0"
   },
   "scripts": {
