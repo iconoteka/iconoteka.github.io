@@ -1,15 +1,22 @@
 {
-  "name": "iconoteka-site",
-  "version": "0.1.1",
+  "name": "iconoteka-next",
+  "version": "0.1.0",
   "private": true,
-  "homepage": "http://iconoteka.com",
-  "dependencies": {
-    "@iconoteka/website-engine": "github:iconoteka/website-engine#3206b7dfd9353ed7c48cd3199a9f5ef6d8a1dcdc",
-    "gh-pages": "^3.1.0"
-  },
   "scripts": {
-    "start": "iconoteka start",
-    "build": "REACT_APP_BASE_URL=https://iconoteka.com iconoteka build",
-    "test": "iconoteka test --env=jsdom"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "11.1.2",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "devDependencies": {
+    "@types/react": "17.0.31",
+    "eslint": "8.1.0",
+    "eslint-config-next": "11.1.2",
+    "typescript": "4.4.4"
   }
 }
