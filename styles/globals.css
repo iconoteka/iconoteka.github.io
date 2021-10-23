@@ -14,3 +14,9 @@ a {
 * {
   box-sizing: border-box;
 }
+
+:root {
+  --color-accent: #FFE4EB;
+  --color-main: #8B8B8C;
+  --color-dark: #1a1a1a;
+}

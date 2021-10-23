@@ -1,0 +1,16 @@
+
+.Search {
+  font-family: 'Inter', serif;
+  font-size: 19px;
+  padding: 13px 21px;
+  background-color: var(--color-accent);
+  border-radius: 24px;
+  border: none;
+}
+.Search:focus {
+  outline-width: 0;
+}
+
+.Search::placeholder {
+  color: var(--color-dark);
+}
