@@ -3,6 +3,8 @@ import * as React from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 
+import { Waypoint } from 'react-waypoint';
+
 import Search from '../components/Search/Search';
 
 import styles from '../styles/Home.module.css';
@@ -19,16 +21,32 @@ type CategoryProps = {
 }
 
 
-type IconProps = {
+type IconCardProps = {
   name: string,
   path: string,
-
+  isVisible: boolean,
+  ref?: React.ForwardedRef<HTMLDivElement>,
+  innerRef?: React.ForwardedRef<HTMLDivElement>
 }
 
-const Icon: React.FC<IconProps> = ({ name, path }) => {
+const Categories: React.FC = () => {
   return (
-    <div className={styles.Icon}>
-      <Image src={`/iconoteka/${path}` } width="48" height="48"  />
+    <ul className={styles.Categories}>
+      <li><a href="" className="active">All Categories</a></li>
+      {iconoteka.items.map((group) => <li><a href="">{group.name}</a></li>)}
+    </ul>
+  )
+}
+
+
+const IconCardWithRef: React.FC<IconCardProps> = React.forwardRef<HTMLDivElement>((props: IconCardProps, ref) => {
+  return <IconCard innerRef={ref} {...props} />;
+});
+
+const IconCard: React.FC<IconCardProps> = ({ name, path, innerRef, isVisible }) => {
+  return (
+    <div className={styles.Icon} ref={innerRef}>
+      { isVisible && <Image src={`/iconoteka/${path}` } width="48" height="48"  /> }
     </div>
   )
 }
@@ -45,6 +63,9 @@ const Category: React.FC<CategoryProps> = ({ name, ...props }) => {
 }
 
 const Home: NextPage = () => {
+
+  const [isVisible, setIsVisible] = React.useState(false);
+  
   return (
     <div className={styles.App}>
       <div className={styles.Container}>
@@ -56,6 +77,7 @@ const Home: NextPage = () => {
 
         <div className={styles.Navigation}>
           <Search text="" />
+          <Categories />
         </div>
       <div className={styles.Footer}>
         Patreon <br />
@@ -65,7 +87,14 @@ const Home: NextPage = () => {
         {iconoteka.items.map((category) => {
           return <Category name={category.name}>
               {category.items.map((icon) => {
-                return <Icon name={icon.name} path={icon.path} />
+                return (
+                  <Waypoint
+                  key={icon.path}
+                  onEnter={() => setIsVisible(true)}
+                >
+                <IconCardWithRef key={icon.path} isVisible={isVisible} name={icon.name} path={icon.path} />
+                </Waypoint>
+                )
               })}
           </Category>
         })}
